@@ -1,0 +1,17 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "name": "wayback-to-video",
+  "version": "1.0.0",
+  "description": "Wayback Reel discovery and historical snapshot tools, plus browser WebMCP H.264 video synthesis.",
+  "homepage": "https://h3manth.com/fun/wayback-to-video/",
+  "transport": {
+    "type": "webmcp",
+    "endpoint": "https://h3manth.com/fun/wayback-to-video/",
+    "openapi": "https://h3manth.com/fun/wayback-to-video/openapi.json"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": false
+  }
+}

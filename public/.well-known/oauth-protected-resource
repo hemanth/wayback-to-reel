@@ -1,0 +1,8 @@
+{
+  "resource": "https://h3manth.com/fun/wayback-to-video/",
+  "scopes_supported": [
+    "public:read"
+  ],
+  "bearer_methods_supported": [],
+  "resource_documentation": "https://h3manth.com/fun/wayback-to-video/auth.md"
+}

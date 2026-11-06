@@ -1,0 +1,18 @@
+{
+  "name": "wayback-to-video",
+  "version": "1.0.0",
+  "description": "Minimalist immersive Wayback Machine yearly snapshot time-lapse studio powered by in-browser FFmpeg WASM.",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "@ffmpeg/core": "^0.12.10",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "playwright-core": "^1.58.2"
+  },
+  "license": "MIT"
+}

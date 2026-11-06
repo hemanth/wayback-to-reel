@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.cache/
+
+Content-Signal: ai-train=yes, search=yes, ai-input=yes

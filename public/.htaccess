@@ -1,0 +1,69 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Cross-Origin-Resource-Policy "cross-origin"
+  Header set content-signal "ai-train=yes, search=yes, ai-input=yes"
+  Header append Vary "Accept"
+  Header add Link "</fun/wayback-to-video/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\", </fun/wayback-to-video/.well-known/agent-skills/index.json>; rel=\"service-desc\"; type=\"application/json\", </fun/wayback-to-video/.well-known/mcp/server-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-video/.well-known/agent-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-video/llms.txt>; rel=\"describedby\"; type=\"text/plain\", </fun/wayback-to-video/openapi.json>; rel=\"service-desc\"; type=\"application/json\""
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /fun/wayback-to-video/
+
+  # Never expose internal cache directory directly
+  RewriteRule ^\.cache(/|$) - [F,L]
+
+  # Markdown content negotiation for agents requesting Accept: text/markdown
+  RewriteCond %{REQUEST_URI} ^/fun/wayback-to-video/?$
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^$ api.php?action=markdown [QSA,L]
+
+  # API routes
+  RewriteRule ^api/timeline/?$ api.php?action=timeline [QSA,L]
+  RewriteRule ^api/snapshot/?$ api.php?action=snapshot [QSA,L]
+
+  # RFC 9727 API catalog
+  RewriteRule ^\.well-known/api-catalog$ api-catalog.json [L]
+</IfModule>
+
+<Files "llms.txt">
+  ForceType "text/plain; charset=utf-8"
+</Files>
+
+<Files "llms-full.txt">
+  ForceType "text/plain; charset=utf-8"
+</Files>
+
+<Files "auth.md">
+  ForceType "text/markdown; charset=utf-8"
+</Files>
+
+<Files "api-catalog.json">
+  ForceType "application/linkset+json; charset=utf-8"
+</Files>
+
+<Files "agent-card.json">
+  ForceType "application/json; charset=utf-8"
+</Files>
+
+<Files "server-card.json">
+  ForceType "application/json; charset=utf-8"
+</Files>
+
+<Files "openapi.json">
+  ForceType "application/json; charset=utf-8"
+</Files>
+
+<Files "http-message-signatures-directory">
+  ForceType "application/json; charset=utf-8"
+</Files>
+
+<Files "oauth-protected-resource">
+  ForceType "application/json; charset=utf-8"
+</Files>
+
+<FilesMatch "\.wasm$">
+  ForceType "application/wasm"
+</FilesMatch>

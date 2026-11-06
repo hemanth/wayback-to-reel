@@ -1,0 +1,60 @@
+{
+  "$schema": "https://a2a-protocol.org/schemas/agent-card/v1.0.0.json",
+  "schemaVersion": "1.0.0",
+  "name": "Wayback Reel",
+  "description": "Minimalist archival web app that fetches one Wayback Machine snapshot per archived year for any URL and encodes an H.264 MP4 time-lapse video in the browser using FFmpeg WebAssembly.",
+  "url": "https://h3manth.com/fun/wayback-to-video/",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Hemanth HM",
+    "url": "https://h3manth.com"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "webmcp": true,
+    "tools": [
+      {
+        "name": "get_wayback_timeline",
+        "description": "Fetch one verified Wayback Machine HTML snapshot per archived year for a domain or URL.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Website domain or URL (e.g. apple.com, info.cern.ch)"
+            }
+          },
+          "required": ["url"]
+        }
+      },
+      {
+        "name": "create_wayback_video",
+        "description": "Fetch yearly Wayback Machine snapshots for a domain and encode an H.264 MP4 time-lapse in the browser.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Website domain or URL"
+            },
+            "secondsPerYear": {
+              "type": "number",
+              "enum": [0.6, 1.0, 1.6],
+              "default": 1.0
+            }
+          },
+          "required": ["url"]
+        }
+      }
+    ]
+  },
+  "communication": {
+    "preferredChannel": "https",
+    "endpoints": {
+      "timeline": "https://h3manth.com/fun/wayback-to-video/api/timeline",
+      "snapshot": "https://h3manth.com/fun/wayback-to-video/api/snapshot",
+      "openapi": "https://h3manth.com/fun/wayback-to-video/openapi.json"
+    }
+  }
+}

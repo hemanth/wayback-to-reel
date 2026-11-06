@@ -1,0 +1,37 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://h3manth.com/fun/wayback-to-video/",
+      "service-desc": [
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/openapi.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/llms-full.txt",
+          "type": "text/plain"
+        },
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/.well-known/agent-card.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://h3manth.com/fun/wayback-to-video/llms.txt",
+          "type": "text/plain"
+        }
+      ]
+    }
+  ]
+}

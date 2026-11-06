@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "v857ZQBLZ16rr28Ng-0NNvQluDjiY6_Ai2LNSVDAD1E",
+      "kid": "wayback-reel-ed25519-1",
+      "use": "sig",
+      "alg": "Ed25519"
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+    <title>Wayback Reel — Yearly Website Snapshots to MP4 in Browser</title>
+    <meta
+      name="description"
+      content="Minimalist archival studio that captures one Wayback Machine snapshot per year for any website and encodes a smooth H.264 MP4 time-lapse directly in your browser using FFmpeg WebAssembly."
+    />
+    <meta name="author" content="Hemanth HM" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f4efe6" />
+    <link rel="canonical" href="https://h3manth.com/fun/wayback-to-video/" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="h3manth.com" />
+    <meta property="og:title" content="Wayback Reel — Watch any website age through time" />
+    <meta
+      property="og:description"
+      content="Pulls one Wayback Machine snapshot per archived year for any website and encodes an H.264 MP4 time-lapse in your browser with FFmpeg WebAssembly."
+    />
+    <meta property="og:url" content="https://h3manth.com/fun/wayback-to-video/" />
+    <meta property="og:image" content="https://h3manth.com/fun/wayback-to-video/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wayback Reel — Yearly Wayback Machine website snapshots encoded to MP4 in your browser" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@GNUmanth" />
+    <meta name="twitter:title" content="Wayback Reel — Watch any website age through time" />
+    <meta
+      name="twitter:description"
+      content="Pulls one Wayback Machine snapshot per archived year for any URL and encodes an H.264 MP4 time-lapse in your browser with ffmpeg.wasm."
+    />
+    <meta name="twitter:image" content="https://h3manth.com/fun/wayback-to-video/og-image.png" />
+
+    <!-- Agent & LLM Discovery (Level 5 Agent-Native / RFC 9727 / A2A / MCP / Agent Skills / llms.txt) -->
+    <link rel="api-catalog" href="./.well-known/api-catalog" type="application/linkset+json" />
+    <link rel="service-desc" href="./.well-known/agent-skills/index.json" type="application/json" />
+    <link rel="service-desc" href="./openapi.json" type="application/json" />
+    <link rel="describedby" href="./.well-known/mcp/server-card.json" type="application/json" />
+    <link rel="describedby" href="./.well-known/agent-card.json" type="application/json" />
+    <link rel="describedby" href="./llms.txt" type="text/plain" />
+    <link rel="describedby" href="./llms-full.txt" type="text/plain" />
+    <link rel="llms" href="./llms.txt" type="text/plain" title="LLM Summary Specification" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f4efe6'/%3E%3Crect x='5' y='7' width='22' height='18' rx='4' fill='none' stroke='%23171614' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d65a38'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=2" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Wayback Reel",
+        "url": "https://h3manth.com/fun/wayback-to-video/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All",
+        "author": {
+          "@type": "Person",
+          "name": "Hemanth HM",
+          "url": "https://h3manth.com"
+        },
+        "description": "Minimalist archival studio that captures one Wayback Machine snapshot per archived year for any website and encodes an H.264 MP4 time-lapse in the browser using FFmpeg WebAssembly."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="ambient-grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <button type="button" class="brand-reset" id="brand-btn" aria-label="Wayback Reel home">
+        <svg class="brand-mark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="19" height="15" rx="3" />
+          <circle cx="12" cy="12" r="3.2" />
+          <path d="M2.5 9h3M18.5 9h3M2.5 15h3M18.5 15h3" />
+        </svg>
+        <span class="brand-name">wayback<span class="brand-dot">·</span>reel</span>
+      </button>
+
+      <div class="active-domain-whisper" id="domain-whisper" aria-live="polite" hidden>
+        <span id="whisper-domain"></span>
+        <span class="whisper-sep" aria-hidden="true">·</span>
+        <span id="whisper-span"></span>
+      </div>
+
+      <button
+        type="button"
+        class="info-trigger"
+        id="info-btn"
+        aria-label="About Wayback Reel"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+      >
+        <span aria-hidden="true">i</span>
+      </button>
+    </header>
+
+    <main class="viewport">
+      <!-- Entry State: Minimal centered URL prompt -->
+      <section class="entry-stage" id="entry-stage" aria-label="Enter a website URL">
+        <h1 class="entry-heading">Watch any website age through time.</h1>
+        <form class="url-capsule" id="url-form" autocomplete="off" novalidate>
+          <svg class="capsule-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.5" />
+            <path d="M2.8 12h18.4M12 2.5c2.7 2.6 4.2 5.9 4.2 9.5s-1.5 6.9-4.2 9.5c-2.7-2.6-4.2-5.9-4.2-9.5S9.3 5.1 12 2.5z" />
+          </svg>
+          <input
+            type="text"
+            id="url-input"
+            class="url-input"
+            placeholder="apple.com"
+            aria-label="Website URL or domain"
+            spellcheck="false"
+            autocapitalize="off"
+            autocorrect="off"
+            autofocus
+          />
+          <button type="submit" class="capsule-go" id="go-btn" aria-label="Create Wayback time-lapse">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </form>
+
+        <div class="preset-row" aria-label="Example domains">
+          <button type="button" class="preset-chip" data-url="example.com">example.com</button>
+          <button type="button" class="preset-chip" data-url="info.cern.ch">info.cern.ch</button>
+          <button type="button" class="preset-chip" data-url="apple.com">apple.com</button>
+          <button type="button" class="preset-chip" data-url="ycombinator.com">ycombinator.com</button>
+          <button type="button" class="preset-chip" data-url="h3manth.com">h3manth.com</button>
+        </div>
+
+        <p class="entry-error" id="entry-error" role="alert" hidden></p>
+      </section>
+
+      <!-- Studio Stage: Developing & FFmpeg Video Projection -->
+      <section class="studio-stage" id="studio-stage" hidden aria-label="Time-lapse projection stage">
+        <div class="projection-shell">
+          <div class="projection-frame" id="projection-frame">
+            <canvas id="preview-canvas" width="1280" height="720" aria-label="Archival frame compositor"></canvas>
+            <video
+              id="reel-video"
+              playsinline
+              loop
+              preload="metadata"
+              hidden
+              aria-label="Rendered Wayback time-lapse video"
+            ></video>
+
+            <!-- Subtle floating HUD when video or preview is shown -->
+            <a
+              id="wayback-ext-link"
+              class="wayback-badge"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open this snapshot on web.archive.org"
+              hidden
+            >
+              <span id="badge-date"></span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17L17 7M9 7h8v8" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Minimalist Studio Controls & Progress Whisper -->
+          <div class="control-bar">
+            <div class="status-cluster" aria-live="polite">
+              <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+              <span class="status-text" id="status-text">Querying Wayback CDX...</span>
+            </div>
+
+            <div class="action-cluster" id="action-cluster">
+              <div class="pace-group" id="pace-group" role="group" aria-label="Seconds per year" hidden>
+                <button type="button" class="pace-btn" data-pace="0.6">0.6s</button>
+                <button type="button" class="pace-btn is-active" data-pace="1.0">1.0s</button>
+                <button type="button" class="pace-btn" data-pace="1.6">1.6s</button>
+              </div>
+
+              <button type="button" class="ghost-pill" id="play-toggle-btn" hidden aria-label="Play or pause video">
+                <svg id="icon-pause" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="6" y="5" width="4" height="14" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" rx="1" />
+                </svg>
+                <svg id="icon-play" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                  <polygon points="6 4 20 12 6 20 6 4" />
+                </svg>
+              </button>
+
+              <button type="button" class="ghost-pill" id="encode-now-btn" hidden>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M10 9l5 3-5 3V9z" />
+                </svg>
+                <span id="encode-btn-label">Encode MP4</span>
+              </button>
+
+              <a class="primary-pill" id="download-btn" href="#" download="wayback-reel.mp4" hidden>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" />
+                </svg>
+                <span>Download MP4</span>
+              </a>
+
+              <button type="button" class="ghost-pill" id="reset-btn" aria-label="Try another URL">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                <span>New URL</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Contact-Sheet Filmstrip -->
+        <div class="filmstrip-wrap" aria-label="Yearly snapshots filmstrip">
+          <div class="filmstrip" id="filmstrip" role="list"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Minimal Info Dialog -->
+    <div class="info-backdrop" id="info-backdrop" hidden>
+      <section class="info-sheet" role="dialog" aria-modal="true" aria-labelledby="info-title">
+        <div class="info-head">
+          <h2 id="info-title">wayback · reel</h2>
+          <button type="button" class="info-close" id="info-close" aria-label="Close dialog">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M2 2l10 10M12 2L2 12" />
+            </svg>
+          </button>
+        </div>
+        <p class="info-body">
+          Enter any domain to pull one clean snapshot per archived year from the
+          <strong>Internet Archive Wayback Machine</strong>, develop them on a tactile contact sheet, and master a smooth H.264 <code>.mp4</code> time-lapse locally in your browser using <strong>FFmpeg WebAssembly</strong> (<code>@ffmpeg/ffmpeg</code>).
+        </p>
+        <ul class="info-list">
+          <li><strong>Click any year</strong> on the bottom filmstrip to inspect or scrub directly to that capture.</li>
+          <li><strong>Toggle years</strong> with the corner dot to omit parked or broken eras and re-encode in seconds.</li>
+          <li><strong>Zero server video encoding</strong>: frame compositing, cross-dissolves, and <code>libx264</code> MP4 muxing run 100% inside your browser tab.</li>
+        </ul>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js?v=2"></script>
+  </body>
+</html>

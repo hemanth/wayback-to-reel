@@ -1,0 +1,91 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Wayback Reel API",
+    "version": "1.0.0",
+    "description": "Discover yearly Internet Archive Wayback Machine HTML snapshots and fetch CORS-safe historical webpage captures."
+  },
+  "servers": [
+    {
+      "url": "https://h3manth.com/fun/wayback-to-video"
+    }
+  ],
+  "paths": {
+    "/api/timeline": {
+      "get": {
+        "operationId": "getWaybackTimeline",
+        "summary": "List one verified Wayback Machine HTML snapshot per archived year",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Target domain or URL, e.g. info.cern.ch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Chronological list of yearly snapshots",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domain": { "type": "string" },
+                    "lookupKey": { "type": "string" },
+                    "count": { "type": "integer" },
+                    "snapshots": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "year": { "type": "integer" },
+                          "timestamp": { "type": "string" },
+                          "dateLabel": { "type": "string" },
+                          "isoDate": { "type": "string" },
+                          "originalUrl": { "type": "string" },
+                          "archiveUrl": { "type": "string" },
+                          "iframeUrl": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/snapshot": {
+      "get": {
+        "operationId": "getWaybackSnapshotImage",
+        "summary": "Render or retrieve a cached 1280x800 image of an archived Wayback snapshot",
+        "parameters": [
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rendered JPEG or PNG snapshot",
+            "content": {
+              "image/jpeg": {},
+              "image/png": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
