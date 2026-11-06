@@ -10,10 +10,8 @@ if (!file_exists($cacheRoot . '/.htaccess')) {
     @file_put_contents($cacheRoot . '/.htaccess', "Require all denied\n");
 }
 
-header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Accept');
-header('content-signal: ai-train=yes, search=yes, ai-input=yes');
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
