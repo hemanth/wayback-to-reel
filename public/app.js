@@ -126,17 +126,40 @@ function renderArchivalFrame(targetCtx, itemA, itemB = null, mix = 0, timelinePr
   const activeItem = mix >= 0.5 && itemB ? itemB : itemA;
   if (!activeItem) return;
 
-  // 2. Top Archival Header (Domain + Editorial Year)
-  targetCtx.fillStyle = "rgba(23, 22, 20, 0.54)";
-  targetCtx.font = '500 15px "JetBrains Mono", ui-monospace, monospace';
+  // 2. Top Archival Header (Domain + App URL Watermark + Editorial Year)
+  const headerY = 33;
   targetCtx.textBaseline = "middle";
+
+  targetCtx.fillStyle = "rgba(23, 22, 20, 0.62)";
+  targetCtx.font = '500 14.5px "JetBrains Mono", ui-monospace, monospace';
   targetCtx.textAlign = "left";
-  targetCtx.fillText(`${currentDomain}  ·  ${activeItem.dateLabel}`, 56, 34);
+  const maxLeftText = currentDomain.length > 26 ? `${currentDomain.slice(0, 25)}…` : currentDomain;
+  targetCtx.fillText(`${maxLeftText}  ·  ${activeItem.dateLabel}`, 56, headerY);
+
+  // Centered app URL pill in the video header
+  const appUrlLabel = "h3manth.com/fun/wayback-to-video";
+  targetCtx.font = '500 12px "JetBrains Mono", ui-monospace, monospace';
+  const pillPadX = 12;
+  const pillW = Math.ceil(targetCtx.measureText(appUrlLabel).width) + pillPadX * 2;
+  const pillH = 24;
+  const pillX = Math.round((W - pillW) / 2);
+  const pillY = Math.round(headerY - pillH / 2);
+
+  roundedRectPath(targetCtx, pillX, pillY, pillW, pillH, 12);
+  targetCtx.fillStyle = "rgba(251, 248, 242, 0.78)";
+  targetCtx.fill();
+  targetCtx.strokeStyle = "rgba(23, 22, 20, 0.14)";
+  targetCtx.lineWidth = 1;
+  targetCtx.stroke();
+
+  targetCtx.fillStyle = "rgba(23, 22, 20, 0.68)";
+  targetCtx.textAlign = "center";
+  targetCtx.fillText(appUrlLabel, W / 2, headerY + 0.5);
 
   targetCtx.fillStyle = "#171614";
   targetCtx.font = '600 24px "JetBrains Mono", ui-monospace, monospace';
   targetCtx.textAlign = "right";
-  targetCtx.fillText(String(activeItem.year), W - 56, 34);
+  targetCtx.fillText(String(activeItem.year), W - 56, headerY);
 
   // 3. Tactile Browser Card (1168 x 614)
   const cardX = 56;
