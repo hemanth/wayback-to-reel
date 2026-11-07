@@ -3,12 +3,12 @@
   "version": "0.2.0",
   "skills": [
     {
-      "name": "wayback-to-video",
+      "name": "wayback-to-reel",
       "type": "skill-md",
       "description": "Discover yearly Wayback Machine snapshots for any URL and encode an H.264 MP4 time-lapse in the browser.",
-      "url": "https://h3manth.com/fun/wayback-to-video/.well-known/agent-skills/wayback-to-video/SKILL.md",
-      "entrypoint": "/fun/wayback-to-video/.well-known/agent-skills/wayback-to-video/SKILL.md",
-      "sha256": "70d135f3453b6678bef0cd07befd61253f83105849dc69b9161334361267ec8c"
+      "url": "https://h3manth.com/fun/wayback-to-reel/.well-known/agent-skills/wayback-to-reel/SKILL.md",
+      "entrypoint": "/fun/wayback-to-reel/.well-known/agent-skills/wayback-to-reel/SKILL.md",
+      "sha256": "c8cd5e053fef1b4f817ceb4f774f80f58ac7b106d21e4bce406ca6d30d968367"
     }
   ]
 }

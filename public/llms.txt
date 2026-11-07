@@ -1,23 +1,23 @@
-# Wayback Reel (wayback-to-video)
+# Wayback Reel (wayback-to-reel)
 
 > Minimalist archival web studio that pulls one Wayback Machine snapshot per archived year for any website URL and encodes an H.264 `.mp4` time-lapse reel in the browser using FFmpeg WebAssembly (`@ffmpeg/ffmpeg`).
 
-- Live URL: https://h3manth.com/fun/wayback-to-video/
-- Source: https://github.com/hemanth/wayback-to-video
+- Live URL: https://h3manth.com/fun/wayback-to-reel/
+- Source: https://github.com/hemanth/wayback-to-reel
 - Author: Hemanth HM (https://h3manth.com)
 
 ## Capabilities
 - **Yearly Wayback Discovery (`GET ./api/timeline?url={domain}`)**: Queries the Internet Archive CDX index collapsed by 4-digit year (`collapse=timestamp:4`, `filter=statuscode:200`, `filter=mimetype:text/html`) with Sparkline + Availability API fallback.
 - **Banner-Free Historical Capture (`GET ./api/snapshot?timestamp={YYYYMMDDhhmmss}&url={originalUrl}`)**: Renders clean `1280x800` snapshots from Wayback `if_` raw archive URLs (`web.archive.org/web/{timestamp}if_/{url}`) with disk caching.
 - **Client-Side MP4 Mastering (`ffmpeg.wasm`)**: Composites `1280x720` archival browser-card frames on `<canvas>` with cubic cross-dissolves and runs `libx264` (`-pix_fmt yuv420p -movflags +faststart`) locally in WebAssembly.
-- **URL Deep-Linking**: Open `https://h3manth.com/fun/wayback-to-video/?url=info.cern.ch` to launch directly into any domain's timeline.
+- **URL Deep-Linking**: Open `https://h3manth.com/fun/wayback-to-reel/?url=info.cern.ch` to launch directly into any domain's timeline.
 - **WebMCP**: Exposes `create_wayback_video` and `get_wayback_timeline` on `navigator.modelContext`.
 
 ## Discovery & Machine Specs
-- Full LLM Spec: https://h3manth.com/fun/wayback-to-video/llms-full.txt
-- OpenAPI 3.1 Spec: https://h3manth.com/fun/wayback-to-video/openapi.json
-- API Catalog (RFC 9727): https://h3manth.com/fun/wayback-to-video/.well-known/api-catalog
-- A2A Agent Card: https://h3manth.com/fun/wayback-to-video/.well-known/agent-card.json
-- MCP Server Card: https://h3manth.com/fun/wayback-to-video/.well-known/mcp/server-card.json
-- Agent Skills Index: https://h3manth.com/fun/wayback-to-video/.well-known/agent-skills/index.json
-- Auth Policy: https://h3manth.com/fun/wayback-to-video/auth.md
+- Full LLM Spec: https://h3manth.com/fun/wayback-to-reel/llms-full.txt
+- OpenAPI 3.1 Spec: https://h3manth.com/fun/wayback-to-reel/openapi.json
+- API Catalog (RFC 9727): https://h3manth.com/fun/wayback-to-reel/.well-known/api-catalog
+- A2A Agent Card: https://h3manth.com/fun/wayback-to-reel/.well-known/agent-card.json
+- MCP Server Card: https://h3manth.com/fun/wayback-to-reel/.well-known/mcp/server-card.json
+- Agent Skills Index: https://h3manth.com/fun/wayback-to-reel/.well-known/agent-skills/index.json
+- Auth Policy: https://h3manth.com/fun/wayback-to-reel/auth.md

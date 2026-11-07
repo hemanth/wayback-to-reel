@@ -1,8 +1,8 @@
-# wayback-to-video
+# wayback-to-reel
 
 Pulls one Wayback Machine snapshot per year for any website and encodes an H.264 `.mp4` time-lapse in your browser with `ffmpeg.wasm`.
 
-Live at [h3manth.com/fun/wayback-to-video](https://h3manth.com/fun/wayback-to-video/).
+Live at [h3manth.com/fun/wayback-to-reel](https://h3manth.com/fun/wayback-to-reel/).
 
 ```bash
 npm install

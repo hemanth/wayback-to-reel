@@ -137,7 +137,7 @@ function renderArchivalFrame(targetCtx, itemA, itemB = null, mix = 0, timelinePr
   targetCtx.fillText(`${maxLeftText}  ·  ${activeItem.dateLabel}`, 56, headerY);
 
   // Centered app URL pill in the video header
-  const appUrlLabel = "h3manth.com/fun/wayback-to-video";
+  const appUrlLabel = "h3manth.com/fun/wayback-to-reel";
   targetCtx.font = '500 12px "JetBrains Mono", ui-monospace, monospace';
   const pillPadX = 12;
   const pillW = Math.ceil(targetCtx.measureText(appUrlLabel).width) + pillPadX * 2;

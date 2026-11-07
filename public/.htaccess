@@ -5,18 +5,18 @@ Options -Indexes
   Header set Cross-Origin-Resource-Policy "cross-origin"
   Header set content-signal "ai-train=yes, search=yes, ai-input=yes"
   Header append Vary "Accept"
-  Header add Link "</fun/wayback-to-video/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\", </fun/wayback-to-video/.well-known/agent-skills/index.json>; rel=\"service-desc\"; type=\"application/json\", </fun/wayback-to-video/.well-known/mcp/server-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-video/.well-known/agent-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-video/llms.txt>; rel=\"describedby\"; type=\"text/plain\", </fun/wayback-to-video/openapi.json>; rel=\"service-desc\"; type=\"application/json\""
+  Header add Link "</fun/wayback-to-reel/.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\", </fun/wayback-to-reel/.well-known/agent-skills/index.json>; rel=\"service-desc\"; type=\"application/json\", </fun/wayback-to-reel/.well-known/mcp/server-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-reel/.well-known/agent-card.json>; rel=\"describedby\"; type=\"application/json\", </fun/wayback-to-reel/llms.txt>; rel=\"describedby\"; type=\"text/plain\", </fun/wayback-to-reel/openapi.json>; rel=\"service-desc\"; type=\"application/json\""
 </IfModule>
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /fun/wayback-to-video/
+  RewriteBase /fun/wayback-to-reel/
 
   # Never expose internal cache directory directly
   RewriteRule ^\.cache(/|$) - [F,L]
 
   # Markdown content negotiation for agents requesting Accept: text/markdown
-  RewriteCond %{REQUEST_URI} ^/fun/wayback-to-video/?$
+  RewriteCond %{REQUEST_URI} ^/fun/wayback-to-reel/?$
   RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
   RewriteRule ^$ api.php?action=markdown [QSA,L]
 

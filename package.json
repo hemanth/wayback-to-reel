@@ -1,5 +1,5 @@
 {
-  "name": "wayback-to-video",
+  "name": "wayback-to-reel",
   "version": "1.0.0",
   "description": "Minimalist immersive Wayback Machine yearly snapshot time-lapse studio powered by in-browser FFmpeg WASM.",
   "type": "module",

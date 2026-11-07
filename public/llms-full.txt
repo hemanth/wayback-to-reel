@@ -1,11 +1,11 @@
 # Wayback Reel — Full Technical & Agent Specification
 
 ## Overview
-Wayback Reel (`wayback-to-video`) turns any website's Internet Archive history into a smooth H.264 `.mp4` time-lapse video inside the browser.
+Wayback Reel (`wayback-to-reel`) turns any website's Internet Archive history into a smooth H.264 `.mp4` time-lapse video inside the browser.
 
 ## Endpoints
 
-### 1. `GET /fun/wayback-to-video/api/timeline?url={domain_or_url}`
+### 1. `GET /fun/wayback-to-reel/api/timeline?url={domain_or_url}`
 Returns one verified `200 OK` `text/html` Wayback Machine snapshot per archived year (`1995`–present).
 
 Example response:
@@ -28,7 +28,7 @@ Example response:
 }
 ```
 
-### 2. `GET /fun/wayback-to-video/api/snapshot?timestamp={timestamp}&url={originalUrl}`
+### 2. `GET /fun/wayback-to-reel/api/snapshot?timestamp={timestamp}&url={originalUrl}`
 Returns a `1280x800` JPEG/PNG visual capture of `https://web.archive.org/web/{timestamp}if_/{originalUrl}` with CORS headers (`Access-Control-Allow-Origin: *`, `Cross-Origin-Resource-Policy: cross-origin`) suitable for HTML5 `<canvas>` and `ffmpeg.wasm` compositing.
 
 ## In-Browser Video Pipeline (`app.js`)

@@ -96,7 +96,7 @@ if ($action === 'markdown') {
     $frontmatter = "---\n"
         . "title: \"Wayback Reel — Yearly Website Snapshots to MP4 in Browser\"\n"
         . "description: \"Captures one Wayback Machine snapshot per archived year for any website and encodes an H.264 MP4 time-lapse in the browser with FFmpeg WebAssembly.\"\n"
-        . "url: \"https://h3manth.com/fun/wayback-to-video/\"\n"
+        . "url: \"https://h3manth.com/fun/wayback-to-reel/\"\n"
         . "---\n\n";
     $fullMd = $frontmatter . $mdBody;
     header('Content-Type: text/markdown; charset=utf-8');

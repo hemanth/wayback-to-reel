@@ -3,7 +3,7 @@
   "schemaVersion": "1.0.0",
   "name": "Wayback Reel",
   "description": "Minimalist archival web app that fetches one Wayback Machine snapshot per archived year for any URL and encodes an H.264 MP4 time-lapse video in the browser using FFmpeg WebAssembly.",
-  "url": "https://h3manth.com/fun/wayback-to-video/",
+  "url": "https://h3manth.com/fun/wayback-to-reel/",
   "version": "1.0.0",
   "provider": {
     "organization": "Hemanth HM",
@@ -52,9 +52,9 @@
   "communication": {
     "preferredChannel": "https",
     "endpoints": {
-      "timeline": "https://h3manth.com/fun/wayback-to-video/api/timeline",
-      "snapshot": "https://h3manth.com/fun/wayback-to-video/api/snapshot",
-      "openapi": "https://h3manth.com/fun/wayback-to-video/openapi.json"
+      "timeline": "https://h3manth.com/fun/wayback-to-reel/api/timeline",
+      "snapshot": "https://h3manth.com/fun/wayback-to-reel/api/snapshot",
+      "openapi": "https://h3manth.com/fun/wayback-to-reel/openapi.json"
     }
   }
 }
